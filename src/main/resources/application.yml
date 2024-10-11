@@ -1,0 +1,21 @@
+server:
+  port: 8080
+spring:
+  data:
+    mongodb:
+      host: 127.0.0.1
+      port: 27017
+      authentication-database: admin
+      usermane: root
+      #username: root
+      password: example
+      database: gamechangedb
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:mysecretkey}  # Segredo do JWT, com valor padrão "mysecretkey"
