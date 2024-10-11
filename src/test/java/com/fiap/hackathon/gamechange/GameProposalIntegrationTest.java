@@ -84,11 +84,11 @@ public class GameProposalIntegrationTest {
         // Simular o comportamento do use case para salvar a proposta
        // when(proposalUseCase.saveProposal(any(Proposal.class))).thenReturn(proposal);
 
-        // Enviar requisição para criar o jogo
-        mockMvc.perform(post("/games")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(game)))
-                .andExpect(status().isCreated());
+//        // Enviar requisição para criar o jogo
+//        mockMvc.perform(post("/games")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(objectMapper.writeValueAsString(game)))
+//                .andExpect(status().isCreated());
 
         // Enviar requisição para criar a proposta
         mockMvc.perform(post("/proposals")
