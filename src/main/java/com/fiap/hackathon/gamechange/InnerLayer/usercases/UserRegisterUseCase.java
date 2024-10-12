@@ -10,12 +10,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class UserRegisterUseCase {
     private final IUserGateway userGateway;
     private final IGameGateway gameGateway;
-
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserRegisterUseCase(IUserGateway userGateway, IGameGateway gameGateway, BCryptPasswordEncoder passwordEncoder) {
@@ -26,10 +26,12 @@ public class UserRegisterUseCase {
 
     //CRIA UM USER: OK
     public User saveUser(User user){
+
         // Criptografa a senha
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         // Cria um novo objeto User com a senha criptografada
         User userWithEncodedPassword = new User(
+
                 user.getId(),
                 user.getLogin(), // TESTE
                 //user.getName(),
@@ -62,19 +64,6 @@ public class UserRegisterUseCase {
     }
 
 
-    // Método para obter todos os usuários com suas respectivas coleções de jogos
-//    public List<UserRegisterDTO> getAllUsersWithGames() {
-//        List<User> users = userGateway.getAllUsers(); // Buscar todos os usuários
-//
-//        // Transformar os usuários em UserRegisterDTO e adicionar a coleção de jogos
-//        return users.stream().map(user -> {
-//            List<Game> games = gameGateway.findGamesByOwnerId(user.getId()); // Buscar jogos de cada usuário
-//            UserRegisterDTO userDTO = UserDTOMapper.toRegisterDTO(user); // Converter User para UserRegisterDTO
-//            userDTO.setGameCollection(games); // Associar a coleção de jogos ao DTO
-//            return userDTO;
-//        }).toList();
-//    }
-
     // ATUALIZA USER POR ID: OK
     public User updateUser(String userId, UserRegisterDTO userAtualizado){
         return userGateway.updateUser(userId, userAtualizado);
@@ -84,5 +73,7 @@ public class UserRegisterUseCase {
     public void deleteUser(String userId){
         userGateway.deleteUser(userId);
     }
+
+    ///
 
 }

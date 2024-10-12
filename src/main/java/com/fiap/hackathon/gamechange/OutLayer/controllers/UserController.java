@@ -28,11 +28,13 @@ public class UserController {
     public ResponseEntity<UserRegisterDTO> saveUser(@RequestBody UserRegisterDTO userRegisterDTO) {
         // Mapeia o DTO para a entidade
         var userEntity = userDTOMapper.toEntity(userRegisterDTO);
-        // Registra o usuário
-        userRegisterUseCase.saveUser(userEntity);
-        // Retorna um status 201 (Created) após o registro bem-sucedido
-        // return ResponseEntity.status(201).build();
-        return ResponseEntity.ok(userRegisterDTO);
+
+        // Registra o usuário e obtém o usuário salvo com o ID gerado
+        User savedUser = userRegisterUseCase.saveUser(userEntity);
+        // Mapeia o usuário salvo de volta para o UserRegisterDTO
+        UserRegisterDTO savedUserRegisterDTO = userDTOMapper.toRegisterDTO(savedUser);
+
+        return ResponseEntity.ok(savedUserRegisterDTO);
     }
 
     // BUSCA USER POR ID: OK

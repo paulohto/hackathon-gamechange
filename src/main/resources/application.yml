@@ -19,3 +19,11 @@ api:
   security:
     token:
       secret: ${JWT_SECRET:mysecretkey}  # Segredo do JWT, com valor padrão "mysecretkey"
+
+aws:
+  region: us-east-1
+#  credentials:
+#    access-key: ${AWS_ACCESS_KEY_ID}
+#    secret-key: ${AWS_SECRET_ACCESS_KEY}
+  bucket:
+    name: bucket-1  # ${AWS_BUCKET_NAME} # Defina isso como variável de ambiente

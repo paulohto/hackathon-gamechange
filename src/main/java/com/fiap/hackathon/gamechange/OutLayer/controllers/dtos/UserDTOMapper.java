@@ -32,6 +32,7 @@ public class UserDTOMapper {
         return new UserRegisterDTO(
                 //user.getName(),
                 user.getId(),
+                user.getLogin(),
                 user.getEmail(),
                 user.getPassword(), // Inclui o campo de senha
                 user.getPreferences(),
@@ -57,9 +58,10 @@ public class UserDTOMapper {
         if (userRegisterDTO == null) {
             throw new IllegalArgumentException("UserRegisterDTO cannot be null");
         }
+
         return new User(
-                //userRegisterDTO.getId(),
-                null,
+                userRegisterDTO.getId(),
+                //null,
                 //userRegisterDTO.getName(),
                 userRegisterDTO.getLogin(),
                 userRegisterDTO.getEmail(),

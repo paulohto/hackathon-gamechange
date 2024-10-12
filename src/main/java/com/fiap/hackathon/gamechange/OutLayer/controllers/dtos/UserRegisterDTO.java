@@ -2,6 +2,7 @@ package com.fiap.hackathon.gamechange.OutLayer.controllers.dtos;
 
 import com.fiap.hackathon.gamechange.InnerLayer.entites.Game;
 import com.fiap.hackathon.gamechange.InnerLayer.entites.enums.TradePreference;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +11,9 @@ import java.util.List;
 
 //@Document(collection = "users")
 public class UserRegisterDTO {
-    //private String name;
+
+    @Id
+    private String id; // TESTE
     private String login;
     private String email;
     private String password; // Para registro
@@ -18,8 +21,8 @@ public class UserRegisterDTO {
     private List<GameDTO> gameCollection; // Pode ser uma lista de IDs de jogos ou simplificações dos jogos
     private String address;
 
-    public UserRegisterDTO(String login, /*String name,*/ String email, String password, TradePreference preferences, List<GameDTO> gameCollection, String address) {
-        //this.name = name;
+    public UserRegisterDTO(String id, String login, /*String name,*/ String email, String password, TradePreference preferences, List<GameDTO> gameCollection, String address) {
+        this.id = id; // teste
         this.login = login;
         this.email = email;
         this.password = password;
@@ -29,7 +32,7 @@ public class UserRegisterDTO {
         this.address = address;
     }
 
-   // public String getName() { return name; }
+    public String getId() { return id; }
     public String getLogin() {
         return login;
     }
@@ -54,8 +57,8 @@ public class UserRegisterDTO {
     }
 
     //SET
-   // public void setName(String name) {        this.name = name;    }
-    public void setLogin(String login) {        this.login = login;    }
+    public void setId(String id) {  this.id = id; }
+    public void setLogin(String login) {  this.login = login; }
 
     public void setEmail(String email) {
         this.email = email;

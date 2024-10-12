@@ -31,7 +31,8 @@ public class UserAuxMapper {
 
     public User toEntity(UserRegisterDTO userRegisterDTO) {
         return new User(
-                null, // Deixe o ID nulo para ser gerado na persistência
+                //null, // Deixe o ID nulo para ser gerado na persistência
+                userRegisterDTO.getId(),
                 userRegisterDTO.getLogin(),
                 //userRegisterDTO.getName(),
 

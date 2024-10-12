@@ -29,9 +29,6 @@ public class UserGatewayAux implements IUserGateway {
 
     @Override
     public User saveUser(User user) {
-//        UserRegisterDTO userRegisterDTO = userAuxMapper.toEntity(user);
-//        return userRepository.save(userRegisterDTO)
-//                .map(userAuxMapper::user);
         return userRepository.save(user); // Salve o objeto User diretamente
     }
     @Override
@@ -48,12 +45,6 @@ public class UserGatewayAux implements IUserGateway {
 
         return userOpt;
     }
-
-//    @Override
-//    public Optional<User> getUserById(String id) {
-//        return userRepository.findById(id);
-//        // Lógica para buscar usuário por ID
-//    }
 
     // LISTAGEM GERAL
     @Override
@@ -89,45 +80,6 @@ public class UserGatewayAux implements IUserGateway {
             throw new RuntimeException("User not found with id: " + userId);
         }
 
-//        return this.userRepository.findById(userId)
-//                .map(existingUser -> {
-//                    // Atualiza apenas os campos que estão em UserRegisterDTO
-//                    UserRegisterDTO uptedUserRegisterDTO = new UserRegisterDTO(
-//                           // existingUser.getId(),
-//                            existingUser.getName(),
-//                            existingUser.getEmail(),
-//                            existingUser.getPassword(),
-//                            existingUser.getPreferences(),
-//                            existingUser.getAddress()
-//                    );
-////                    existingUser.updateName(userAtualizado.getName());
-////                    existingUser.updateEmail(userAtualizado.getEmail());
-////                    existingUser.updatePassword(userAtualizado.getPassword());
-////                    existingUser.updatePreferences(userAtualizado.getPreferences());
-////                    existingUser.updateAddress(userAtualizado.getAddress());
-//
-//                    // Atualiza o campo `updatedAt`
-//                    //existingUser.updateUpdatedAt(LocalDate.now());
-//
-//                    // Salva o usuário atualizado
-//                    //return userRepository.save(existingUser);
-//                    return userRepository.save(uptedUserRegisterDTO).map(userAuxMapper::toEntity);
-//                })
-//                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
-
-//        // Lógica para atualizar o usuário
-//        Optional<User> existingUser = userRepository.findById(userId);
-//        if (existingUser.isPresent()) {
-//            User user = existingUser.get();
-//            // Atualize os campos do usuário com os valores de userAtualizado
-//            userAtualizado.getName();
-//            userAtualizado.getEmail();
-//            userAtualizado.getPreferences();
-//           userAtualizado.getAddress();
-//            // Salve o usuário atualizado
-//            return userRepository.save(user);
-//        }
-//        return null;
     }
 
     @Override
