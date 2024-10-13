@@ -347,6 +347,33 @@ Este projeto foi desenvolvido seguindo os princípios de **Clean Architecture**.
     - UserRequest
     - UserResponse
 
+## Camadas do Sistema GameChange
 
+### Camadas Internas:
+
+### Entities:
+Representam as regras de negócios centrais do domínio. São classes puras do Java e não dependem de frameworks externos ou de detalhes de infraestrutura.
+
+Exemplo: User,  Game, Proposal
+
+### Use Cases:
+Contêm as regras específicas de aplicação, representando casos de uso do sistema. São responsáveis por coordenar as interações entre as entidades, garantindo que as regras de negócio sejam respeitadas.
+
+Exemplo: RegisterUser, ProposeGameExchange, ListAvailableGames
+
+### Interface Adapters:
+Camada responsável por adaptar dados de entrada e saída. Aqui estão os controladores, conversores DTOs, mapeadores e gateways que facilitam a comunicação entre a camada de casos de uso e o mundo externo.
+
+Exemplo: UserController, GameDTO, ProposalMapper
+
+### Frameworks & Drivers:
+É a camada mais externa e contém os frameworks e ferramentas que suportam a infraestrutura do sistema, como banco de dados, bibliotecas externas e serviços de autenticação.
+
+Exemplo: MongoDBRepository, Spring Security, JWT
+
+### Fluxo de Dados na Clean Architecture:
+1. As requisições de entrada chegam pelos controladores na camada de Interface Adapters, que por sua vez invocam os casos de uso.
+2. Os casos de uso manipulam as entidades e coordenam as operações, retornando dados ou acionando processos de saída (por exemplo, persistência).
+3. As respost
 
 
