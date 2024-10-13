@@ -1,6 +1,6 @@
 # GameChange: Sistema de Troca de Jogos
 
-O **GameChange** é uma plataforma voltada para o compartilhamento e troca de jogos de videogame entre usuários. O sistema foi projetado seguindo os princípios da **Clean Architecture**, visando uma separação clara de responsabilidades e facilidade de manutenção e escalabilidade.
+O **GameChange** é uma plataforma voltada para o compartilhamento e troca de jogos de videogame entre usuários. O sistema foi projetado seguindo os princípios da **Clean Architecture**, visando uma separação clara de responsabilidades e facilidade de manutenção e escalabilidade. Ao final dessa documentação será possível verificar a estrutura das camadas do projeto.
 
 ### Tecnologias Utilizadas:
 - **Java 17**: para garantir a compatibilidade com recursos modernos da linguagem.
