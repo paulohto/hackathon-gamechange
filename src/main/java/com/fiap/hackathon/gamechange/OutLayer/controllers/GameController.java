@@ -30,11 +30,13 @@ public class GameController {
     public ResponseEntity<GameDTO> saveGame(@RequestBody GameDTO gameDTO) {
         // Mapeia o DTO para a entidade
         var gameEntity = gameDTOMapper.toEntity(gameDTO);
-        // Registra o game
-        gameRegisterUseCase.saveGame(gameEntity);
-        // Retorna um status 201 (Created) após o registro bem-sucedido
-        // return ResponseEntity.status(201).build();
-        return ResponseEntity.ok(gameDTO);
+
+        // Registra o usuário e obtém o usuário salvo com o ID gerado
+        Game savedGame = gameRegisterUseCase.saveGame(gameEntity);
+        // Mapeia o usuário salvo de volta para o UserRegisterDTO
+        GameDTO savedGameDTO = gameDTOMapper.toDTO(savedGame);
+
+        return ResponseEntity.ok(savedGameDTO);
     }
 
     // BUSCA GAME POR ID: OK
