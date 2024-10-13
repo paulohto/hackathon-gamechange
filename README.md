@@ -373,6 +373,6 @@ Exemplo: MongoDBRepository, Spring Security, JWT
 ### Fluxo de Dados na Clean Architecture:
 1. As requisições de entrada chegam pelos controladores na camada de Interface Adapters, que por sua vez invocam os casos de uso.
 2. Os casos de uso manipulam as entidades e coordenam as operações, retornando dados ou acionando processos de saída (por exemplo, persistência).
-3. As respost
+3. As respostas são transformadas em DTOs e retornadas para a camada externa, mantendo as entidades e casos de uso isolados das dependências de infraestrutura.
 
 
