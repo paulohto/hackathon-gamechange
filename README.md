@@ -2,6 +2,13 @@
 
 O **GameChange** é uma plataforma voltada para o compartilhamento e troca de jogos de videogame entre usuários. O sistema foi projetado seguindo os princípios da **Clean Architecture**, visando uma separação clara de responsabilidades e facilidade de manutenção e escalabilidade.
 
+### Tecnologias Utilizadas:
+- **Java 17**: para garantir a compatibilidade com recursos modernos da linguagem.
+- **Spring Boot**: framework para criar aplicações Java robustas e escaláveis.
+- **Maven**: ferramenta de automação de build e gerenciamento de dependências.
+- **MongoDB**: banco de dados NoSQL para armazenamento escalável de dados.
+- **Spring Security**: para garantir uma autenticação e autorização seguras, utilizando tokens JWT para controle de sessão.
+
 ### Principais funcionalidades incluem:
 - **CRUDs**: gerenciamento completo de usuários, jogos e propostas de troca.
 - **Persistência de dados**: utilizando **MongoDB**, garantindo escalabilidade e performance.
