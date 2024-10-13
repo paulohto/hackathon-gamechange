@@ -31,6 +31,9 @@ public class UserController {
 
         // Registra o usuário e obtém o usuário salvo com o ID gerado
         User savedUser = userRegisterUseCase.saveUser(userEntity);
+        if (savedUser == null) {
+            throw new IllegalStateException("User could not be saved");
+        }
         // Mapeia o usuário salvo de volta para o UserRegisterDTO
         UserRegisterDTO savedUserRegisterDTO = userDTOMapper.toRegisterDTO(savedUser);
 
@@ -39,19 +42,11 @@ public class UserController {
 
     // BUSCA USER POR ID: OK
     @GetMapping("/{id}")
-   public ResponseEntity<UserRegisterDTO> getUserById(@PathVariable String id){
+    public ResponseEntity<UserRegisterDTO> getUserById(@PathVariable String id) {
         Optional<UserRegisterDTO> user = userRegisterUseCase.getUserById(id);
         return user.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
-
-    // Endpoint para retornar todos os usuários com seus jogos
-//    @GetMapping("/users/get-all-users-com-games")
-//    public List<UserRegisterDTO> getAllUsersWithGames() {
-//        return userRegisterUseCase.getAllUsersWithGames(); // Chamar o caso de uso
-//    }
-
 
     // BUSCA LISTA GERAL DE USER: OK
     @GetMapping("/get-all-users")
@@ -61,13 +56,21 @@ public class UserController {
     }
 
     // ATUALIZA USER POR ID: OK
-    @PutMapping("/edita-user-id/{id}")
+   @PutMapping("/edita-user-id/{id}")
     public User updateUser(@PathVariable String id, @RequestBody UserRegisterDTO userAtualizado){
 //        User updatedUser = this.userRegisterUseCase.updateUser(id, userAtualizado);
 //        UserRegisterDTO updatedUserDTO = UserDTOMapper.toRegisterDTO(updatedUser); // Mapeie de volta para o DTO
-//        return ResponseEntity.ok(updatedUserDTO); // Retorne o DTO atualizado
         return  this.userRegisterUseCase.updateUser(id, userAtualizado);
-    }
+}
+
+//    @PutMapping("/edita-user-id/{id}")
+//    public ResponseEntity<UserRegisterDTO> updateUser(@PathVariable String id, @RequestBody UserRegisterDTO userAtualizado){
+//        // Mapeia o DTO para a entidade
+//        var userEntity = userDTOMapper.toEntity(userAtualizado);
+//        User updatedUser = userRegisterUseCase.updateUser(id, userAtualizado);
+//        UserRegisterDTO updatedUserDTO = UserDTOMapper.toRegisterDTO(updatedUser);
+//        return ResponseEntity.ok(updatedUserDTO);
+//    }
 
     // DELETA UM USER POR ID: OK
     @DeleteMapping("/delete-user/{id}")

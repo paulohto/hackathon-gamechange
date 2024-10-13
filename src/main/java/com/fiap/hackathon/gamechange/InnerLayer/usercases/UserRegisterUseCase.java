@@ -8,6 +8,7 @@ import com.fiap.hackathon.gamechange.OutLayer.controllers.dtos.UserRegisterDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -65,9 +66,39 @@ public class UserRegisterUseCase {
 
 
     // ATUALIZA USER POR ID: OK
-    public User updateUser(String userId, UserRegisterDTO userAtualizado){
-        return userGateway.updateUser(userId, userAtualizado);
+//    public User updateUser(String userId, UserRegisterDTO userAtualizado){
+//        return userGateway.updateUser(userId, userAtualizado);
+//    }
+
+    // ATUALIZA USER POR ID: OK
+    public User updateUser(String userId, UserRegisterDTO userAtualizado) {
+        // Busque o usuário atual no banco de dados
+        Optional<User> existingUserOpt = userGateway.getUserById(userId);
+
+        if (existingUserOpt.isPresent()) {
+            User existingUser = existingUserOpt.get();
+            // Atualize os campos necessários
+            User updatedUser = new User(
+                    existingUser.getId(), // Manter o mesmo ID
+                    existingUser.getLogin() != null ? userAtualizado.getLogin() : existingUser.getLogin(),
+                    //userAtualizado.getName() != null ? userAtualizado.getName() : existingUser.getName(),
+                    userAtualizado.getEmail() != null ? userAtualizado.getEmail() : existingUser.getEmail(),
+                    userAtualizado.getPassword() != null ? userAtualizado.getPassword() : existingUser.getPassword(),
+                    userAtualizado.getPreferences() != null ? userAtualizado.getPreferences() : existingUser.getPreferences(),
+                    existingUser.getGameCollection(), // Mantém a coleção de jogos
+                    userAtualizado.getAddress() != null ? userAtualizado.getAddress() : existingUser.getAddress(),
+                    existingUser.getCreatedAt(), // Mantém a data de criação original
+                    LocalDate.now() // Atualiza a data de modificação
+            );
+            // Salve as alterações
+            return this.saveUser(updatedUser);
+        } else {
+            // Se o usuário não for encontrado, retorne null ou lance uma exceção
+            // throw new UserNotFoundException("User with ID " + userId + " not found");
+            throw new RuntimeException("User not found with id: " + userId);
+        }
     }
+
 
     // DELETA UM USER POR ID: OK
     public void deleteUser(String userId){

@@ -63,6 +63,7 @@ class UserControllerTest {
     void saveUser_ShouldReturnUserDTO() throws Exception {
         // Arrange
         UserRegisterDTO userRegisterDTO = new UserRegisterDTO(
+                "userId",                  // id (adicionado o id)
                 "Security4",               // login
                 "user@test.com",            // email
                 "s123",                     // password
@@ -93,7 +94,7 @@ class UserControllerTest {
 
         // Mock the behavior: Mock getUserById to return Optional<User>
         Optional<UserRegisterDTO> optionalUserRegisterDTO  = Optional.of(mappedUserRegisterDTO);
-        when(userRegisterUseCase.getUserById(any(String.class))).thenReturn(optionalUserRegisterDTO);
+        when(userRegisterUseCase.saveUser(any(User.class))).thenReturn(userEntity);
 
 
         // Chame o endpoint e verifique a resposta
@@ -115,6 +116,7 @@ class UserControllerTest {
         // Arrange
         String userId = "123";
         UserRegisterDTO userRegisterDTO = new UserRegisterDTO(
+                "userId",                  // id (adicionado o id)
                 "Security4",               // login
                 "user@test.com",            // email
                 "s123",                     // password
@@ -148,6 +150,7 @@ class UserControllerTest {
     void getAllUsers_ShouldReturnListOfUsers() {
         // Arrange
         List<UserRegisterDTO> users = List.of(new UserRegisterDTO(
+                "userId",                  // id (adicionado o id)
                 "Security4",               // login
                 "user@test.com",            // email
                 "s123",                     // password
@@ -155,6 +158,7 @@ class UserControllerTest {
                 new ArrayList<>(),          // gameCollection, lista de jogos vazia ou preenchida
                 "Rua Teste, 123"            // address
         ), new UserRegisterDTO(
+                "userId",                  // id (adicionado o id)
                 "Security5",               // login
                 "user5@test.com",            // email
                 "s123",                     // password
@@ -192,6 +196,7 @@ class UserControllerTest {
         // Arrange
         String userId = "123";
         UserRegisterDTO updatedUserDTO = new UserRegisterDTO(
+                "userId",                  // id (adicionado o id)
                 "Security4",               // login
                 "user@test.com",            // email
                 "s123",                     // password
