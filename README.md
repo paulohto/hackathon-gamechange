@@ -347,9 +347,8 @@ Este projeto foi desenvolvido seguindo os princípios de **Clean Architecture**.
     - UserRequest
     - UserResponse
 
-## Camadas do Sistema GameChange
 
-### Camadas Internas:
+## Explicando Camadas Internas:
 
 ### Entities:
 Representam as regras de negócios centrais do domínio. São classes puras do Java e não dependem de frameworks externos ou de detalhes de infraestrutura.
