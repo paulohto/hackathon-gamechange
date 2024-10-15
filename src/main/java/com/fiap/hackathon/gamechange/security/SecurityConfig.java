@@ -35,7 +35,8 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/auth/login" , "/users").permitAll() // Permite acesso ao endpoint de login
-                        .requestMatchers(HttpMethod.GET).authenticated()
+                        .requestMatchers(HttpMethod.GET, "/auth/login", "/users").permitAll()
+                        //.requestMatchers(HttpMethod.GET).authenticated()
                         .anyRequest().authenticated()
                 )
                 //.formLogin(Customizer.withDefaults())

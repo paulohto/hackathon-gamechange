@@ -25,13 +25,18 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+        String requestURI = request.getRequestURI();
+        // Ignorar o filtro de autenticação para rotas públicas
+        if ("/auth/login".equals(requestURI) || "/users".equals(requestURI)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         var token = this.recoverToken(request);
         if(token != null){
             try {
                 var login = tokenService.validateToken(token);
-                //UserDetails user = userRepository.findByLogin(login);
-                //UserDetails user = userRepository.findByLogin(login); // funciona
-                //UserDetailsDTO user = userRepository.findByLogin(login); // teste // funciona
                 UserDetails user = authorizationService.loadUserByUsername(login);
 
                 if (user != null) {

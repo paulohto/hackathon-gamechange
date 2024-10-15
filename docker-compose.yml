@@ -13,21 +13,21 @@ services:
     networks:
       - mongo-gamechange-network
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    depends_on:
-      - mongo
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME:root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD:example
-      - ME_CONFIG_MONGODB_URL:mongodb://root:example@mongo:27017/
-    links:
-      - mongo
-    networks:
-      - mongo-gamechange-network
+#  mongo-express:
+#    image: mongo-express
+#    restart: always
+#    ports:
+#      - 8081:8081
+#    depends_on:
+#      - mongo
+#    environment:
+#       - ME_CONFIG_MONGODB_ADMINUSERNAME:root
+#       - ME_CONFIG_MONGODB_ADMINPASSWORD:example
+#       - ME_CONFIG_MONGODB_URL:mongodb://root:example@mongo:27017/
+#    links:
+#      - mongo
+#    networks:
+#      - mongo-gamechange-network
 
 networks:
   mongo-gamechange-network:

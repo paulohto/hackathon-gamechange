@@ -3,10 +3,11 @@ server:
 spring:
   data:
     mongodb:
-      host: 127.0.0.1
+      #host: 127.0.0.1
+      #host: mongo  # Altere para o nome do serviço no Docker
       port: 27017
       authentication-database: admin
-      usermane: root
+      #usermane: root
       #username: root
       password: example
       database: gamechangedb
